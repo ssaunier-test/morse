@@ -1,3 +1,5 @@
+# pylint: disable=missing-docstring
+
 class Morse:
     ALPHABET = {
         '.-':   'A',
@@ -28,19 +30,15 @@ class Morse:
         '--..': 'Z'
     }
 
-    def decode(self, input):
-        if input == "":
+    def decode(self, message):
+        if message == "":
             return ""
 
-        symbols = input.split(" ")
-        letters = [ self.ALPHABET[s] for s in symbols ]
+        words = message.split(" / ")
+        decoded_words = [self.decode_word(word) for word in words]
+        return ' '.join(decoded_words)
+
+    def decode_word(self, word):
+        symbols = word.split(" ")
+        letters = [self.ALPHABET[s] for s in symbols]
         return ''.join(letters)
-
-        # words = input.split(" / ")
-        # decoded_words = []
-        # for word in words:
-        #     symbols = word.split(" ")
-        #     letters = [ self.ALPHABET[s] for s in symbols ]
-        #     decoded_words.append(''.join(letters))
-
-        # return ' '.join(decoded_words)
